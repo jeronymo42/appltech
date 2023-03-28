@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Отправка сообщения
+{% endblock %}
+
+{% block content %}
+   <div class="container">
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.subject.label }}
+            {{ form.subject }}
+
+            {{ form.content.label }}
+            {{ form.content }}
+            <br>
+            <a class="btn btn-primary" href="{% url 'shop' %}">Назад</a>
+            <input type="submit" class="btn btn-success" value="Отправить сообщение">
+            
+        </form>
+
+        
+   </div>
+{% endblock %}

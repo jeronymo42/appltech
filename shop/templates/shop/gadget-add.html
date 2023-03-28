@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавление гаджета
+{% endblock %}
+{% block content %}
+<form method="POST" action="">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <label for="name" class="col-sm-2 col-form-label">Название</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="name" id="name">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="description" class="col-sm-2 col-form-label">Описание</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="description" id="description">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="price" class="col-sm-2 col-form-label">Цена</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" name="price" id="price">
+        </div>
+    </div>
+    <!-- <div class="row mb-3">
+        <label for="photo" class="col-sm-2 col-form-label">Изображение</label>
+        <div class="col-sm-10">
+            <input type="file" class="form-control" name="photo" id="photo">
+        </div>
+    </div> -->
+    <div class="row mb-3">
+        <div class="col-sm-10 offset-sm-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="exist" id="exist">
+                <label class="form-check-label" for="exist">
+                    На сайте?
+                </label>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-info" href="{% url 'shop' %}">Назад</a>
+    <input type="submit" class="btn btn-success" value="Добавить"></input>
+</form>
+
+{% endblock %}

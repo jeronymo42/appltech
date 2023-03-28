@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Магазин техники Apple{% endblock %}
+{% block content %}
+<h1>Доступные телефоны Apple</h1>
+<div class="container">
+    <div class="row row-cols-auto">
+        {% for phone in phones %}
+
+        <div class="col card mb-3" style="max-width: 640px;">
+            <div class="row g-0">
+                
+                <div class="col-md-4">
+                    {% if phone.photo %}
+                        <img src="{{phone.photo.url}}" class="img-fluid rounded-start" alt="{{ phone.name }}">
+                    {% else %}
+                        <img src="{% static 'no-photo.png' %}" class="img-fluid rounded-start" alt="{{ phone.name }}">
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ phone.name }}</h5>
+                        <!-- <p class="card-text">{{ phone.description }}</p> -->
+                        <p class="card-text"><small class="text-muted">{{ phone.price }} руб.</small></p>
+                        <a href="{% url 'details' phone.pk %}" class="btn btn-dark">Подробнее</a>
+                        <a href="{% url 'add_basket_prod' phone.pk %}" class="btn btn-primary">В корзину!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<nav>
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Предыдущая">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.number| add:-1 }}">{{ page_obj.number| add:-1 }} </a>
+        </li>
+        {% endif %}
+        
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.number }}"><strong>{{ page_obj.number }}</strong></a></li>
+
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.number| add:+1 }}">{{ page_obj.number| add:+1 }} </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Следующая">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}

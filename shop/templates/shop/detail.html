@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{phone.name}} {% endblock %}
+{% block content %}
+<h1>{{ phone.name }}</h1>
+<div class="container">
+    <div class="col card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                {% if phone.photo %}
+                    <img src="{{phone.photo.url}}" class="img-fluid rounded-start" alt="{{ phone.name }}">
+                {% else %}
+                    <img src="{% static 'no-photo.png' %}" class="img-fluid rounded-start" alt="{{ phone.name }}">
+                {% endif %}
+            </div>            
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{ phone.name }}</h5>
+                    <p class="card-text">{{ phone.description }}</p>
+                    <p class="card-text"><small class="text-center">{{ phone.price }} руб.</small></p>
+                    <a href="{% url 'add_basket_prod' phone.pk %}" class="btn btn-success">В корзину!</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <a href="{% url 'shop' %}" class="btn btn-primary">Назад</a>
+    {% if perms.appltech.change_Gadget %}
+    <a href="{% url 'editgadget' phone.pk%}" class="btn btn-warning">Изменить</a>
+    {% endif%}
+    {% if perms.appltech.delete_Gadget %}
+    <a href="{% url 'deletegadget' phone.pk%}" class="btn btn-danger">Удалить</a>
+    {% endif%}
+</div>
+{% endblock %}
