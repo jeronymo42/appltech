@@ -133,8 +133,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # URL-адрес для вывода картинок на сайте
 MEDIA_URL = '/media/'
 
-EMAIL_HOST_USER = 'v.ledovskikh@internet.ru'
-EMAIL_HOST_PASSWORD = 'QSZdr5SxqVRKcDR0cg6d'
+EMAIL_HOST_USER = '***@internet.ru'
+EMAIL_HOST_PASSWORD = '****'
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
